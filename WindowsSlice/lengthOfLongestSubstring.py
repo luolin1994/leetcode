@@ -18,7 +18,7 @@ def lengthOfSubstring(s):
             res = max(res,right - left)
             while (left <= temp):  #使用list, 通过切片,找到字符时跳过该重复窗口
                 windows.pop(s[left])
-                left += 1
+                left += 1             #可改进，是否当left到字符串尾的距离小于res时就可以停止搜索？
         else:
             res = max(res,right-left+1)
 

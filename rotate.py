@@ -3,7 +3,7 @@
 #Do not return anything, modify nums in-place instead.使用空间复杂度为 O(1) 的 原地 算法
 
 nums = [1,2,3,4,5,6,7]
-k = 3
+k = 2
 '''
 #超出时间限制,暴力法
 def rotate(nums,k):
@@ -34,8 +34,24 @@ def rev(nums , start ,end):
         end -= 1
 
 
+#使用环状替换
+def rotate2(nums,k):
+    k = k % len(nums)
+    start = count = 0
+    while count < len(nums):
+        target = start
+        tmp = nums[start]
+        while True:
+            target =  (target+k) % len(nums)
+            tmp,nums[target] = nums[target],tmp
+            count += 1
+            if count >= len(nums) or target == start:
+                break
+        start += 1
 
-rotate(nums,k)
+
+rotate2(nums,k)
 print(nums)
+
 
 

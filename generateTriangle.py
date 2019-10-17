@@ -1,5 +1,5 @@
 #--coding:utf8--
-#杨辉三角
+#118 杨辉三角
 numRows = 5
 result = []
 for i in range(numRows):

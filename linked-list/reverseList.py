@@ -11,11 +11,22 @@ class Solution:
     # 迭代
     def reverseList(self,head:ListNode) -> ListNode:
 
-        temp = None
-        while head:
-           head, temp , temp.next = head.next , head , temp
+        pre = None
+        cur = head
+        while cur:
+            # # 记录当前节点的下一个节点
+            # tmp = cur.next
+            # # 然后将当前节点指向pre
+            # cur.next = pre
+            # # pre和cur节点都前进一位
+            # pre = cur
+            # cur = tmp
 
-        return temp
+            print(cur)
+            pre , cur , cur.next = cur , cur.next , pre
+            #注意：python多元赋值的顺序为，先计算等式右边的值进行存储，再从左到右进行赋值，因此对最后的cur.next进行赋值时的cur已经被赋予了cur.next
+
+        return pre
 
     #递归解决方法
     def reverseList2(self, head: ListNode) -> ListNode:

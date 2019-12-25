@@ -29,10 +29,33 @@ class Solution:
 
 
     # 使用快慢指针找到中点，reverse 逆序后半部分，从头、中点，开始比较是否相同
+    # 快指针每次走俩步，则快指针到头时，慢指针恰好在中点
     def isPalindrome2(self,head:ListNode) -> bool:
+        fast = head
+        low = head
+        while fast and fast.next:
+            fast = fast.next.next
+            low = low.next
+        # 若长度为奇数，则翻转的起点位置加1
+        if fast:
+            low = low.next
 
+        # 逆序后半部分
+        curr = low
+        new_mid = None
+        while curr:
+            curr , new_mid , new_mid.next = curr.next, curr , new_mid
 
-        return False
+        start = head
+        while new_mid:
+            if new_mid.val != start.val:
+                return False
+            else:
+                new_mid = new_mid.next
+                start = start.next
+
+        return True
+
 
 
 
@@ -41,11 +64,14 @@ node2 = ListNode(2)
 node3 = ListNode(3)
 node4 = ListNode(2)
 node5 = ListNode(1)
+node6 = ListNode(1)
 
 node1.next = node2
 node2.next = node3
 node3.next = node4
 node4.next = node5
+#node5.next = node6
 solution = Solution()
 
-print(solution.isPalindrome(node1))
+
+print(solution.isPalindrome2(node1))
